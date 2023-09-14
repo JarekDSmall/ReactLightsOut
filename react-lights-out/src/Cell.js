@@ -15,15 +15,20 @@ import "./Cell.css";
  **/
 
 class Cell extends Component {
-  handleClick = () => {
-    this.props.flipCellsAroundMe();
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
 
-    // Notify the parent Board component to handle the cell click
-  };
+  handleClick(evt) {
+    this.props.flipCellsAroundMe();
+  }
 
   render() {
     let classes = "Cell" + (this.props.isLit ? " Cell-lit" : "");
-    return <div className={classes} onClick={this.handleClick}></div>;
+    return (
+      <td className={classes} onClick={this.handleClick} />
+    );
   }
 }
 
