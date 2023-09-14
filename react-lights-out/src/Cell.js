@@ -14,9 +14,17 @@ import "./Cell.css";
  *
  **/
 
-function Cell({ flipCellsAroundMe, isLit }) {
-  const classes = `Cell ${isLit ? "Cell-lit" : ""}`;
-  return <td className={classes} onClick={flipCellsAroundMe} />;
+class Cell extends Component {
+  handleClick = () => {
+    this.props.flipCellsAroundMe();
+
+    // Notify the parent Board component to handle the cell click
+  };
+
+  render() {
+    let classes = "Cell" + (this.props.isLit ? " Cell-lit" : "");
+    return <div className={classes} onClick={this.handleClick}></div>;
+  }
 }
 
 export default Cell;
